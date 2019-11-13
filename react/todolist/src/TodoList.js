@@ -90,7 +90,7 @@ class TodoList extends Component {
     }
 
     getTodoItem() {
-        return this.state.list.map((item, index) => {console.log(index)
+        return this.state.list.map((item, index) => {
             return (
                 <Fragment key={index}>
                     {/* 不使用组件形式
