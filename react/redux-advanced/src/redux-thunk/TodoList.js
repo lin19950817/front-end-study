@@ -1,8 +1,14 @@
+/**
+ * 容器组件
+ *
+ * @author LinZhenNan lin.zhennan@hand-china.com 2019/11/12 17:13
+ */
 import React, {Component} from 'react';
 import store from './store';
-import {getAddItemAction, getDeleteItemAction, getInputChangeAction} from "./store/actionCreators";
-import TodoListUI from './TodoListUI';
+import {getAddItemAction, getDeleteItemAction, getInputChangeAction, getTodoList} from "./store/actionCreators";
+import StatelessTodoListUI from './StatelessTodoListUI';
 import 'antd/dist/antd.css';
+
 
 class TodoList extends Component {
     constructor(props) {
@@ -22,7 +28,11 @@ class TodoList extends Component {
 
     render() {
         return (
-            <TodoListUI
+            // 使用 UI组件
+            // <TodoListUI
+
+            // 使用无状态组件
+            <StatelessTodoListUI
                 list={this.state.list}
                 inputValue={this.state.inputValue}
                 handleInputChange={this.handleInputChange}
@@ -32,17 +42,17 @@ class TodoList extends Component {
             );
     }
 
+    // 发送异步请求获取数据
+    componentDidMount() {
+        const action = getTodoList();
+        // 将函数传给 store，基于 redux-thunk。
+        store.dispatch(action);
+    }
+
     // 输入框改变事件
     handleInputChange(e) {
         // 创建 Action对象
-        // const action = {
-        //     // type: 'change_input_value',
-        //     // 使用 actiontypes拆分
-        //     type: CHANGE_INPUT_VALUE,
-        //     value: e.target.value
-        // }
         const action = getInputChangeAction(e.target.value);
-
         // 将 action传给 store
         store.dispatch(action);
     }
@@ -54,27 +64,14 @@ class TodoList extends Component {
 
     handleBtnClick(e) {
         // action对象
-        // const action = {
-        //     // type: 'add_todo_item'
-        //     // actionTypes拆分
-        //     type: ADD_TODO_ITEM
-        // };
         const action = getAddItemAction();
-
         // 向 store传 action
         store.dispatch(action);
     }
 
     handleItemDelete(index) {
         // action对象
-        // const action = {
-        //     // type: 'delete_todo_item',
-        //     // actionTypes拆分
-        //     type: DELETE_TODO_ITEM,
-        //     index
-        // };
         const action = getDeleteItemAction(index);
-
         // 向 store传 action
         store.dispatch(action);
     }

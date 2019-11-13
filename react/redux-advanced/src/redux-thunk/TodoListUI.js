@@ -3,16 +3,12 @@
  *
  * @author LinZhenNan lin.zhennan@hand-china.com 2019/11/12 17:13
  */
-import React, { Component } from 'react';
-import {Input, Button} from 'antd';
-import {List, Typography} from 'antd';
+import React, {Component} from 'react';
+import {Input, Button, List, Typography} from 'antd';
 
-class TodoListUI extends Component{
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
+class TodoListUI extends Component {
     render() {
+        // 页面渲染
         return (
             <div style={{marginTop: "10px", marginLeft: "10px"}}>
                 <div>
@@ -26,9 +22,7 @@ class TodoListUI extends Component{
                         bordered
                         dataSource={this.props.list}
                         renderItem={(item, index) => (
-                            <List.Item onClick={(index) => {
-                                this.props.handleItemDelete(index)
-                            }}>
+                            <List.Item onClick={() => {this.props.handleItemDelete(index)}}>
                                 <Typography.Text mark>[ITEM]</Typography.Text> {item}
                             </List.Item>
                         )}
