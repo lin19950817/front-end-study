@@ -10,8 +10,8 @@ yarn add redux-thunk
 ```
 ## Redux-thunk
 使用 redux-thunk中间件实现 ajax数据请求
-1. 在 [store](src/store/index.js) 中在创建 `store` 的时候使用中间件 `redux-thunk`
-2. 将异步发送数据的操作从 [组件](src/TodoList.js) 提取到 [action](src/store/actionCreators.js) 中
+1. 在 [store](store/index.js) 中在创建 `store` 的时候使用中间件 `redux-thunk`
+2. 将异步发送数据的操作从 [组件](TodoList.js) 提取到 [action](store/actionCreators.js) 中
 
 redux-thunk中间件是对 Dispatch进行升级<br>
 ![redux数据流](images/reduxDataFlow.png)
